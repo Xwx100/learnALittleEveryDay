@@ -16,6 +16,7 @@ print(Singleton.__dict__)
 print(Singleton.mro())
 print(s1 is s2)
 
+# 使用元类实现单例
 class Singleton_not_new(type):
     def __init__(self, *args, **kwargs):
         print("__init__")
@@ -36,6 +37,6 @@ class Foo(object,metaclass=Singleton_not_new):
 foo1 = Foo()
 foo2 = Foo()
 print(foo1)
-print(Foo.__dict__)  #_Singleton__instance': <__main__.Foo object at 0x100c52f10> 存在一个私有属性来保存属性，而不会污染Foo类（其实还是会污染，只是无法直接通过__instance属性访问）
+print(Foo.__dict__) #_Singleton__instance': <__main__.Foo object at 0x100c52f10> 存在一个私有属性来保存属性，而不会污染Foo类（其实还是会污染，只是无法直接通过__instance属性访问）
 
-print(foo1 is foo2)  # T
+print(foo1 is foo2) # T
