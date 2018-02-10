@@ -1,5 +1,6 @@
 
-# 使用__new__方法实现单例
+# 使用自动调用__new__方法实现单例
+# 固定 类属性 指向约束 父类的__new__方法
 class Singleton(object):
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, '_instance'):
@@ -40,3 +41,16 @@ print(foo1)
 print(Foo.__dict__) #_Singleton__instance': <__main__.Foo object at 0x100c52f10> 存在一个私有属性来保存属性，而不会污染Foo类（其实还是会污染，只是无法直接通过__instance属性访问）
 
 print(foo1 is foo2) # T
+
+# 使用类方法@classmethod
+class Singleton_classMethod(object):
+
+    @classmethod
+    def instance(cls):
+        if not hasattr(cls,'_instance'):
+            cls._instance = cls()
+        return cls._instance
+
+a = Singleton_classMethod().instance()
+b = Singleton_classMethod().instance()
+print(a is b)
