@@ -6,6 +6,8 @@ import tornado.options
 import tornado.ioloop
 
 from tornado.options import define,options
+from .urls import urls
+from . import config
 
 define('aport',default=8000,type=int,help='Port-8000')
 
@@ -17,7 +19,7 @@ class indexhandler(tornado.web.RequestHandler):
 def main():
     tornado.options.parse_command_line()
     app = tornado.web.Application(
-        [(r'/',indexhandler),]
+        urls, **config.settings
     )
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.aport)
