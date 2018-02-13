@@ -1,4 +1,4 @@
-from .handlers import childHandlers
+from tornado_test.handlers import childHandlers
 
 
 urls = [

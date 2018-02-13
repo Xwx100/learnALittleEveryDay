@@ -4,6 +4,10 @@ from tornado.web import RequestHandler
 class Basehandler(RequestHandler):
     """childHandlers的基类"""
 
+    @property
+    def db(self):
+        return self.application.db
+
     def prepare(self):
         pass
 

@@ -1,9 +1,8 @@
-from tornado.web import RequestHandler
-from . import baseHandler
+from tornado_test.handlers import baseHandler
 
 
-class IndexHandler(RequestHandler):
+class IndexHandler(baseHandler.Basehandler):
     """首页"""
 
     def get(self, *args, **kwargs):
-        pass
+        self.write('hello,许伟新')
